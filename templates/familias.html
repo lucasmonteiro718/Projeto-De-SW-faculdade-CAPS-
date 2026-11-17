@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block conteudo %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h3>Famílias</h3><a class="btn btn-success" href="{{ url_for('nova_familia') }}">+ Nova família</a>
+</div>
+<div class="table-responsive"><table class="table table-striped">
+  <thead><tr><th>Responsável</th><th>Telefone</th><th>Endereço</th><th>Atendimentos</th><th></th></tr></thead>
+  <tbody>
+  {% for f in familias %}
+    <tr><td>{{ f.responsavel }}</td><td>{{ f.telefone }}</td><td>{{ f.endereco }}</td>
+      <td>{{ f.atendimentos|length }}</td>
+      <td><a class="btn btn-sm btn-outline-success" href="{{ url_for('historico', id=f.id) }}">Histórico</a></td></tr>
+  {% else %}
+    <tr><td colspan="5" class="text-muted">Nenhuma família cadastrada.</td></tr>
+  {% endfor %}
+  </tbody>
+</table></div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block conteudo %}
+<h3>Registrar atendimento</h3>
+{% if familias %}
+<form method="post" class="col-md-6">
+  <label class="form-label">Família</label>
+  <select class="form-select mb-2" name="familia" required>
+    {% for f in familias %}<option value="{{ f.id }}" {% if f.id == selecionada %}selected{% endif %}>{{ f.responsavel }}</option>{% endfor %}
+  </select>
+  <label class="form-label">Descrição</label>
+  <textarea class="form-control mb-3" name="descricao" rows="5" required></textarea>
+  <button class="btn btn-success">Registrar</button>
+</form>
+{% else %}
+<p>Cadastre uma família primeiro. <a href="{{ url_for('nova_familia') }}">Cadastrar</a></p>
+{% endif %}
+{% endblock %}

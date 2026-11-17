@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CAPS Tatuapé</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+{% if session.logado %}
+<nav class="navbar navbar-expand-md navbar-dark bg-success mb-4">
+  <div class="container">
+    <a class="navbar-brand" href="{{ url_for('familias') }}">CAPS Tatuapé</a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('familias') }}">Famílias</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('nova_familia') }}">Nova família</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('atendimento') }}">Atendimento</a></li>
+      </ul>
+      <a class="btn btn-outline-light btn-sm" href="{{ url_for('logout') }}">Sair</a>
+    </div>
+  </div>
+</nav>
+{% endif %}
+<main class="container">
+  {% for cat, msg in get_flashed_messages(with_categories=true) %}
+    <div class="alert alert-{{ cat if cat != 'message' else 'info' }}">{{ msg }}</div>
+  {% endfor %}
+  {% block conteudo %}{% endblock %}
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
