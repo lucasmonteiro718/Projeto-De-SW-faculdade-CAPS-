@@ -13,5 +13,6 @@ Flask
 SQLite
 SQLAlchemy
 Bootstrap
-Autor
+
+Autor:
 Lucas Monteiro
